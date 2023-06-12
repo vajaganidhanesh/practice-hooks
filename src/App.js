@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useCallback, useState } from "react";
+import "./App.css";
+import Greeting from "./Greeting";
 
 function App() {
+  const [value, setValue] = useState("");
+  const [count, setCount] = useState(0);
+
+  const data = useCallback(() => {
+    return `Hello ${value}`;
+  }, [value]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="">
+        <input
+          type="text"
+          className="form-control mb-2 mr-sm-2"
+          placeholder=""
+          onChange={(e) => {
+            setValue(e.target.value);
+          }}
+        />
+      </div>
+      <Greeting Greetings={data} />
+      {count}
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        + by 1
+      </button>
+    </>
   );
 }
 
