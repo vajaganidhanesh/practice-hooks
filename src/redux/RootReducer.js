@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { addCart } from "./reducer";
+import { TodoList } from "./reducer";
 
 export const rootReducer = combineReducers({
-  addCart,
+  TodoList,
 });

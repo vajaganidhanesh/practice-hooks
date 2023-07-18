@@ -3,15 +3,15 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 // import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import IncrementDecrement from "./components/IncrementDecrement";
 // import MemoHook from "./components/MemoHook";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
+import TodoList from "./components/TodoList";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <IncrementDecrement />
+    <TodoList />
   </Provider>
 );
 

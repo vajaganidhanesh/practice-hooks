@@ -1,7 +1,7 @@
-export const addToCart = (data) => {
-  console.log(data);
+export const AddTodoList = (data) => {
+  // console.log(data);
   return {
-    type: "add",
+    type: "ADD_TODO",
     payload: data,
   };
 };

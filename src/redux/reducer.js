@@ -1,15 +1,29 @@
 const initiState = {
-  counter: 0,
   todos: [],
 };
 
-export const addCart = (state = initiState, action) => {
+export const TodoList = (state = initiState, action) => {
   switch (action.type) {
-    case "add":
-      console.log(action.payload);
-      return 100;
+    case "ADD_TODO":
+      console.log(action);
+      return {
+        ...state,
+        todos: [...state.todos, action.payload],
+      };
+
+    case "DELETE_TODO":
+      return {
+        ...state,
+        todos: [state.todos.filter((value) => value.id !== action.payload)],
+      };
+
+    case "UPDATE_TODO":
+      return {
+        ...state,
+        todos: [state.todos.splice],
+      };
 
     default:
-      return 100;
+      return state;
   }
 };
