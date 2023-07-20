@@ -4,10 +4,11 @@ import {
   AddTodoList,
   DeleteTodoList,
   FetchProducts,
-} from "../redux/TodoActions";
+} from "../redux/TodoList/TodoActions";
 
 function TodoList() {
   const store = useSelector((state) => state.TodoList.todos);
+  // const products = useSelector((state) => state.TodoList.todos);
   console.log(store);
   const dispatch = useDispatch();
 
