@@ -1,15 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  AddTodoList,
-  DeleteTodoList,
-  FetchProducts,
-} from "../redux/TodoList/TodoActions";
+import { AddTodoList, DeleteTodoList } from "../redux/TodoList/TodoActions";
+import { handleFakeStoreData } from "../redux/Fakestore/FakeStoreActions";
 
 function TodoList() {
   const store = useSelector((state) => state.TodoList.todos);
-  // const products = useSelector((state) => state.TodoList.todos);
-  console.log(store);
+  const products = useSelector((state) => state);
+  console.log(products);
   const dispatch = useDispatch();
 
   const [todos, setTodo] = useState({
@@ -17,6 +14,12 @@ function TodoList() {
     todo: "",
   });
   const { id, todo } = todos;
+
+  useEffect(() => {
+    dispatch(handleFakeStoreData());
+    // eslint-disable-next-line
+  }, []);
+
   const handleChange = (e) => {
     setTodo((prev) => ({
       ...prev,
@@ -77,14 +80,14 @@ function TodoList() {
           </dl>
         </div>
       </div>
-      <button
+      {/* <button
         className="btn btn-primary"
         onClick={() => {
           dispatch(FetchProducts());
         }}
       >
         FetchData
-      </button>
+      </button> */}
       {store.length !== 0 ? (
         <>
           {store.map((value, index) => {
