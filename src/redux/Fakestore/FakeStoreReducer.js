@@ -1,4 +1,4 @@
-import { FETCH_PRODUCT_SAGA } from "./Constants";
+import { DELETE_PRODUCT, FETCH_PRODUCT_SAGA } from "./Constants";
 const initialState = {
   products: [],
 };
@@ -8,9 +8,13 @@ export const FakeStore = (state = initialState, action) => {
     case FETCH_PRODUCT_SAGA:
       return {
         ...state,
-        products: [...state.products, action.payload],
+        products: [...state.products, ...action.payload],
       };
-
+    case DELETE_PRODUCT:
+      return {
+        ...state,
+        products: state.products.filter((prod) => prod.id !== action.payload),
+      };
     default:
       return state;
   }

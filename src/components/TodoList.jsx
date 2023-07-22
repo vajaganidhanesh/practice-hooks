@@ -5,7 +5,7 @@ import { handleFakeStoreData } from "../redux/Fakestore/FakeStoreActions";
 
 function TodoList() {
   const store = useSelector((state) => state.TodoList.todos);
-  const products = useSelector((state) => state);
+  const products = useSelector((state) => state.FakeStore.products);
   console.log(products);
   const dispatch = useDispatch();
 
@@ -16,6 +16,7 @@ function TodoList() {
   const { id, todo } = todos;
 
   useEffect(() => {
+    console.log("fetched data");
     dispatch(handleFakeStoreData());
     // eslint-disable-next-line
   }, []);
@@ -113,6 +114,24 @@ function TodoList() {
       ) : (
         <>Please fill the list</>
       )}
+
+      <div className=" d-flex flex-wrap">
+        {products?.map((value, index) => {
+          return (
+            <div
+              key={index + 1}
+              className=" card"
+              style={{ width: "25%", height: "300px" }}
+            >
+              <div className=" card-img">
+                <img className=" img-fluid" src={value.image} alt="" />
+              </div>
+              <div className=" card-body text-truncate">{value.title}</div>
+              <div className="btn btn-danger">Delete</div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

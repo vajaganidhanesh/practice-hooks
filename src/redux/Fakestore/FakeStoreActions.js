@@ -6,9 +6,10 @@ export const handleFakeStoreData = () => {
   };
 };
 
-export const handleDeleteFakeStoreData = () => {
+export const handleDeleteFakeStoreData = (id) => {
   return {
     type: DELETE_PRODUCT,
+    payload: id,
   };
 };
 

@@ -4,12 +4,13 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import store from "./redux/store";
 import { Provider } from "react-redux";
-import TodoList from "./components/TodoList";
+// import TodoList from "./components/TodoList";
+import FakeStore from "./components/FakeStore";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <TodoList />
+    <FakeStore />
   </Provider>
 );
 
