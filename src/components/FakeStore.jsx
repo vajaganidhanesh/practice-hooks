@@ -6,9 +6,10 @@ import {
 } from "../redux/Fakestore/FakeStoreActions";
 
 import MyModal from "./MyModal";
+import Loader from "./Loader";
 
 function FakeStore() {
-  const products = useSelector((state) => state.FakeStore.products);
+  const products = useSelector((state) => state.FakeStore);
   const dispatch = useDispatch();
 
   const [product, setProduct] = useState({
@@ -16,6 +17,7 @@ function FakeStore() {
     title: "",
     image: "",
   });
+
   const [model, setModel] = useState(false);
 
   useEffect(() => {
@@ -25,6 +27,9 @@ function FakeStore() {
   }, []);
 
   const handleDelete = (id) => {
+    setTimeout(() => {
+      products.loading = false;
+    }, 500);
     dispatch(handleDeleteFakeStoreData(id));
   };
 
@@ -38,7 +43,12 @@ function FakeStore() {
 
   return (
     <>
-      <div className=" container-fluid">
+      <div className=" container-fluid ">
+        {products.loading && (
+          <>
+            <Loader />
+          </>
+        )}
         <div>
           <MyModal props={handleModel} props1={model} />
         </div>
@@ -50,7 +60,7 @@ function FakeStore() {
         </div>
 
         <div className=" d-flex flex-wrap justify-content-center column-gap-2 row-gap-2">
-          {products?.map((value, index) => {
+          {products.products?.map((value, index) => {
             return (
               <div
                 key={index + 1}
